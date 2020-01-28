@@ -17,7 +17,24 @@ namespace cis237_assignment2
         /// </summary>
         public void SolveMaze(char[,] maze, int xStart, int yStart)
         {
+            // Print the maze
+            
+
             // Do work needed to use mazeTraversal recursive call and solve the maze.
+            Console.WriteLine("Move Up, Down, Left, or Right");
+
+            string input = Console.ReadLine();
+
+
+            
+            
+        }
+
+        public void PrintMaze(char[,] maze, int xStart, int yStart)
+        {
+
+            
+            
         }
 
 
