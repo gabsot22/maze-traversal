@@ -16,14 +16,13 @@ namespace cis237_assignment2
         /// exactly as it is here without adding anything other than code in the body.
         /// </summary>
         public void SolveMaze(char[,] maze, int xStart, int yStart)
-        {
-            // Print the maze
-            
-
+        {       
             // Do work needed to use mazeTraversal recursive call and solve the maze.
-            Console.WriteLine("Move Up, Down, Left, or Right");
-
+            Console.WriteLine("Move Up, Down, Left, or Right with the WASD keys");
             string input = Console.ReadLine();
+            int direction = Int32.Parse(input);
+            Console.WriteLine("you selected: " + input);
+            mazeTraversal(xStart, yStart, direction, 'W', 'D', 'S', 'A');
 
 
             
@@ -45,9 +44,16 @@ namespace cis237_assignment2
         /// More than likely you will need to pass in at a minimum the current position
         /// in X and Y maze coordinates. EX: mazeTraversal(int currentX, int currentY)
         /// </summary>
-        private void mazeTraversal()
+        private void mazeTraversal(int currentX, int currentY, int direction, char up, char right, char down, char left)
         {
             // Implement maze traversal recursive call
+            if(currentX == 1 && currentY == 1)
+            {
+                return ;
+            }
+            return currentX * mazeTraversal(currentX - 1);
+            
+
         }
     }
 }
