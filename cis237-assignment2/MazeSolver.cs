@@ -22,19 +22,27 @@ namespace cis237_assignment2
             string input = Console.ReadLine();
             int direction = Int32.Parse(input);
             Console.WriteLine("you selected: " + input);
-            mazeTraversal(xStart, yStart, direction, 'W', 'D', 'S', 'A');
+            mazeTraversal(xStart, yStart, direction, '1', '2', '3', '4');
 
 
             
             
         }
 
-        public void PrintMaze(char[,] maze, int xStart, int yStart)
+        public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
         {
-
             
-            
+            //Before Transposing
+            for (int r = 0; r < maze.GetLength(0); r++)
+            {
+                for (int c = 0; c < maze.GetLength(1); c++)
+                    Console.Write("{0}  ", maze[r, c]);            // rOW, cOLUMN - USE IT kiss!
+                Console.WriteLine();
+            }
+            Console.WriteLine();
         }
+
+        
 
 
         /// <summary>
@@ -47,11 +55,40 @@ namespace cis237_assignment2
         private void mazeTraversal(int currentX, int currentY, int direction, char up, char right, char down, char left)
         {
             // Implement maze traversal recursive call
-            if(currentX == 1 && currentY == 1)
+
+            //if(currentX == 1 && currentY == 1)
+            //{
+            //    return ;
+            //}
+            //return //currentX * mazeTraversal(currentX - 1);
+            if (currentX == 4 && currentY == 3)
             {
-                return ;
+                Console.WriteLine("Moved to {0}, {1}", currentX, currentY);
             }
-            return currentX * mazeTraversal(currentX - 1);
+            else
+            {
+                mazeTraversal(currentY + 1, currentX, direction, up, right, down, left);
+                mazeTraversal(currentY - 1, currentX, direction, up, right, down, left);
+                mazeTraversal(currentX - 1, currentY, direction, up, right, down, left);
+                mazeTraversal(currentX + 1, currentY, direction, up, right, down, left);
+            }
+
+            //if (direction == up)
+            //{
+            //    mazeTraversal(currentY + 1, currentX, direction, up, right, down, left);
+            //}
+            //if (direction == down)
+            //{
+            //    mazeTraversal(currentY - 1, currentX, direction, up, right, down, left);
+            //}
+            //if (direction == left)
+            //{
+            //    mazeTraversal(currentX - 1, currentY, direction, up, right, down, left);
+            //}
+            //if (direction == right)
+            //{
+            //    mazeTraversal(currentX + 1, currentY, direction, up, right, down, left);
+            //}
             
 
         }
