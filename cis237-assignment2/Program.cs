@@ -45,17 +45,19 @@ namespace cis237_assignment2
             // Print original maze
             mazeSolver.PrintOriginalMaze(maze1, X_START, Y_START);
 
+            mazeSolver.PrintTransposedMaze(maze1, X_START, Y_START);
+
             // Create the second maze by transposing the first maze
-            char[,] maze2 = transposeMaze(maze1);
+           // char[,] maze2 = transposeMaze(maze1);
 
             
-            
-
-            // Solve the transposed maze.
-            mazeSolver.SolveMaze(maze2, X_START, Y_START);
-
             // Solve the original maze.
             mazeSolver.SolveMaze(maze1, X_START, Y_START);
+
+            // Solve the transposed maze.
+           // mazeSolver.SolveMaze(maze2, X_START, Y_START);
+
+            
 
         }
 
@@ -86,21 +88,22 @@ namespace cis237_assignment2
             //for (int r = 0; r < mazeToTranspose.GetLength(0); r++)
             //{
             //    for (int c = 0; c < mazeToTranspose.GetLength(1); c++)
-            //        Console.Write("{0}  ", mazeToTranspose[r, c]);            // rOW, cOLUMN - USE IT kiss!
+            //        Console.Write("{0}  ", mazeToTranspose[r, c]);            // rOW, cOLUMN
             //    Console.WriteLine();
             //}
             //Console.WriteLine();
+
 
             // Output Transposed maze
             for (int c = 0; c < mazeToTranspose.GetLength(1); c++)
             {
                 for (int r = 0; r < mazeToTranspose.GetLength(0); r++)
-                    Console.Write("{0}  ", mazeToTranspose[r, c]);
+                    Console.Write("{0}  ", mazeToTranspose[r, c]); // do assignments
                 Console.WriteLine();
                 
             }
             
-            return new char[1, 1]; 
+            return new char[1, 1]; // Just a place holder
         }
     }
 }

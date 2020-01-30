@@ -16,33 +16,14 @@ namespace cis237_assignment2
         /// exactly as it is here without adding anything other than code in the body.
         /// </summary>
         public void SolveMaze(char[,] maze, int xStart, int yStart)
-        {       
-            // Do work needed to use mazeTraversal recursive call and solve the maze.
-            Console.WriteLine("Move Up, Down, Left, or Right with the WASD keys");
-            string input = Console.ReadLine();
-            int direction = Int32.Parse(input);
-            Console.WriteLine("you selected: " + input);
-            mazeTraversal(xStart, yStart, direction, '1', '2', '3', '4');
-
-
-            
-            
-        }
-
-        public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
         {
+            // Do work needed to use mazeTraversal recursive call and solve the maze.
             
-            //Before Transposing
-            for (int r = 0; r < maze.GetLength(0); r++)
-            {
-                for (int c = 0; c < maze.GetLength(1); c++)
-                    Console.Write("{0}  ", maze[r, c]);            // rOW, cOLUMN - USE IT kiss!
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-        }
+            mazeTraversal(xStart, yStart, maze);
 
-        
+            
+
+        }
 
 
         /// <summary>
@@ -52,25 +33,26 @@ namespace cis237_assignment2
         /// More than likely you will need to pass in at a minimum the current position
         /// in X and Y maze coordinates. EX: mazeTraversal(int currentX, int currentY)
         /// </summary>
-        private void mazeTraversal(int currentX, int currentY, int direction, char up, char right, char down, char left)
+        private void mazeTraversal(int currentX, int currentY, char[,] maze)
         {
             // Implement maze traversal recursive call
 
-            //if(currentX == 1 && currentY == 1)
+            //if (currentX == 1 && currentY == 1)
             //{
-            //    return ;
+            //    return;
             //}
-            //return //currentX * mazeTraversal(currentX - 1);
-            if (currentX == 4 && currentY == 3)
+            //return currentX * mazeTraversal(currentX - 1);
+
+            // This is the base case
+            if ('.' == maze[currentX, currentY])
             {
                 Console.WriteLine("Moved to {0}, {1}", currentX, currentY);
-            }
-            else
-            {
-                mazeTraversal(currentY + 1, currentX, direction, up, right, down, left);
-                mazeTraversal(currentY - 1, currentX, direction, up, right, down, left);
-                mazeTraversal(currentX - 1, currentY, direction, up, right, down, left);
-                mazeTraversal(currentX + 1, currentY, direction, up, right, down, left);
+           
+                mazeTraversal(currentX - 1, currentY, maze);
+                mazeTraversal(currentX + 1, currentY, maze);
+
+                mazeTraversal(currentX, currentY + 1, maze);
+                mazeTraversal(currentX, currentY - 1, maze);
             }
 
             //if (direction == up)
@@ -89,8 +71,28 @@ namespace cis237_assignment2
             //{
             //    mazeTraversal(currentX + 1, currentY, direction, up, right, down, left);
             //}
-            
+
 
         }
+
+        public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
+        {
+
+            //Before Transposing
+            for (int r = 0; r < maze.GetLength(0); r++)
+            {
+                for (int c = 0; c < maze.GetLength(1); c++)
+                    Console.Write("{0}  ", maze[r, c]);            // rOW, cOLUMN - USE IT kiss!
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+
+        public void PrintTransposedMaze(char[,] maze, int xStart, int yStart)
+        {
+
+        }
+
+
     }
 }
