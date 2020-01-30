@@ -18,10 +18,9 @@ namespace cis237_assignment2
         public void SolveMaze(char[,] maze, int xStart, int yStart)
         {
             // Do work needed to use mazeTraversal recursive call and solve the maze.
-            
-            mazeTraversal(xStart, yStart, maze);
+           
 
-            
+            mazeTraversal(xStart, yStart, maze);
 
         }
 
@@ -36,16 +35,13 @@ namespace cis237_assignment2
         private void mazeTraversal(int currentX, int currentY, char[,] maze)
         {
             // Implement maze traversal recursive call
-
-            //if (currentX == 1 && currentY == 1)
-            //{
-            //    return;
-            //}
-            //return currentX * mazeTraversal(currentX - 1);
+            PrintOriginalMaze(maze, currentX, currentY);
 
             // This is the base case
             if ('.' == maze[currentX, currentY])
             {
+                maze[currentX, currentY] = 'X';
+
                 Console.WriteLine("Moved to {0}, {1}", currentX, currentY);
            
                 mazeTraversal(currentX - 1, currentY, maze);
@@ -53,26 +49,9 @@ namespace cis237_assignment2
 
                 mazeTraversal(currentX, currentY + 1, maze);
                 mazeTraversal(currentX, currentY - 1, maze);
+
             }
-
-            //if (direction == up)
-            //{
-            //    mazeTraversal(currentY + 1, currentX, direction, up, right, down, left);
-            //}
-            //if (direction == down)
-            //{
-            //    mazeTraversal(currentY - 1, currentX, direction, up, right, down, left);
-            //}
-            //if (direction == left)
-            //{
-            //    mazeTraversal(currentX - 1, currentY, direction, up, right, down, left);
-            //}
-            //if (direction == right)
-            //{
-            //    mazeTraversal(currentX + 1, currentY, direction, up, right, down, left);
-            //}
-
-
+            
         }
 
         public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
@@ -90,7 +69,17 @@ namespace cis237_assignment2
 
         public void PrintTransposedMaze(char[,] maze, int xStart, int yStart)
         {
+            for (int c = 0; c < maze.GetLength(1); c++)
+            {
+                for (int r = 0; r < maze.GetLength(0); r++)
+                {
+                    Console.Write("{0}  ", maze[r, c]); // do assignments
+                    
+                }
 
+                Console.WriteLine();
+
+            }
         }
 
 

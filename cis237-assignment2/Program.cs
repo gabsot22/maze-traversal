@@ -25,7 +25,7 @@ namespace cis237_assignment2
                  { '#', '#', '.', '#', '#', },
                  { '#', '#', '.', '.', '.', },
                  { '#', '#', '#', '#', '#' } };
-                // USE THIS
+            // USE THIS
             //{ { '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#' },
             //{ '#', '.', '.', '.', '#', '.', '.', '.', '.', '.', '.', '#' },
             //{ '#', '.', '#', '.', '#', '.', '#', '#', '#', '#', '.', '#' },
@@ -43,21 +43,21 @@ namespace cis237_assignment2
             MazeSolver mazeSolver = new MazeSolver();
 
             // Print original maze
-            mazeSolver.PrintOriginalMaze(maze1, X_START, Y_START);
+          //  mazeSolver.PrintOriginalMaze(maze1, X_START, Y_START);
 
-            mazeSolver.PrintTransposedMaze(maze1, X_START, Y_START);
-
-            // Create the second maze by transposing the first maze
-           // char[,] maze2 = transposeMaze(maze1);
-
-            
             // Solve the original maze.
             mazeSolver.SolveMaze(maze1, X_START, Y_START);
 
-            // Solve the transposed maze.
-           // mazeSolver.SolveMaze(maze2, X_START, Y_START);
 
-            
+            // Create the second maze by transposing the first maze
+            //char[,] maze2 = transposeMaze(maze1);
+
+            // mazeSolver.PrintTransposedMaze(maze2, X_START, Y_START);
+
+            // Solve the transposed maze.
+            // mazeSolver.SolveMaze(maze2, X_START, Y_START);
+
+
 
         }
 
@@ -84,26 +84,23 @@ namespace cis237_assignment2
         {
             //Write code here to create a transposed maze.
 
-            ////Before Transposing
-            //for (int r = 0; r < mazeToTranspose.GetLength(0); r++)
-            //{
-            //    for (int c = 0; c < mazeToTranspose.GetLength(1); c++)
-            //        Console.Write("{0}  ", mazeToTranspose[r, c]);            // rOW, cOLUMN
-            //    Console.WriteLine();
-            //}
-            //Console.WriteLine();
-
-
             // Output Transposed maze
+            char[,] transposedMaze = new char[5, 5];
             for (int c = 0; c < mazeToTranspose.GetLength(1); c++)
             {
                 for (int r = 0; r < mazeToTranspose.GetLength(0); r++)
+                {
                     Console.Write("{0}  ", mazeToTranspose[r, c]); // do assignments
+                    
+                     transposedMaze[r,c] = mazeToTranspose[r, c];
+                    return new char[r, c];
+                }
+
                 Console.WriteLine();
-                
+
             }
             
-            return new char[1, 1]; // Just a place holder
+            return new char[5, 5]; // Just a place holder
         }
     }
 }
