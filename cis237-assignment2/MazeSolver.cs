@@ -19,38 +19,10 @@ namespace cis237_assignment2
         {
             // Do work needed to use mazeTraversal recursive call and solve the maze.
 
-           // solveMaze(xStart, yStart, maze);
+            // solveMaze(xStart, yStart, maze);
             mazeTraversal(xStart, yStart, maze);
 
         }
-
-
-        //private bool solveMaze(int currentX, int currentY, char[,] maze)
-        //{
-        //    bool correctPath = false;
-        //    bool shouldCheck = true;
-
-        //    if (currentX >= 12 || currentX < 0 || currentY >= 12 || currentY < 0)
-        //    {
-        //        shouldCheck = false;
-        //    }
-        //    else
-        //    {
-        //        // Check if at finish
-        //        if (maze[currentX, currentY] > 12)
-        //        {
-        //            correctPath = true;
-        //            shouldCheck = false;
-        //        }
-
-        //        //Check for a wall
-        //        if ('.' == maze[currentX, currentY])
-        //        {
-        //            shouldCheck = false;
-        //        }
-        //        return true;
-        //    }
-        //}
 
         /// <summary>
         /// This should be the recursive method that gets called to solve the maze.
@@ -61,50 +33,80 @@ namespace cis237_assignment2
         /// </summary>
         private void mazeTraversal(int currentX, int currentY, char[,] maze)
         {
-            
-            
+            /*******************ATTEMPT 2***************/
+            //// Checks if coordinates are outside the maze
+            //if (currentX == 12 || currentY == 12)
+            //{
+            //    // Implement maze traversal recursive call
+            //    PrintOriginalMaze(maze, currentX, currentY);
 
-            if (currentX < 12 || currentY < 12 )
+            //}
+            //else if ('.' == maze[currentX, currentY])
+            //// If the coordinate is a '.' , continue(This is the base case)
+
+            //{
+
+            //    // Implement maze traversal recursive call
+            //    PrintOriginalMaze(maze, currentX, currentY);
+
+            //    // Changes location to a X so you cant go back.
+            //    maze[currentX, currentY] = 'X';
+
+            //    mazeTraversal(currentX, currentY + 1, maze);
+            //    mazeTraversal(currentX - 1, currentY, maze);
+            //    mazeTraversal(currentX + 1, currentY, maze);
+            //    mazeTraversal(currentX, currentY - 1, maze);
+
+            //    if ('X' == maze[currentX, currentY])
+            //    {
+            //        maze[currentX, currentY] = '0';
+            //    }
+            //}
+
+
+
+            /*************** ATTEMPT 1 ******************/
+
+            // Checks if coordinates are inside the maze
+            if (currentX <= 11 && currentY <= 11)
             {
-                
-                // This is the base case
+                // Implement maze traversal recursive call
+                PrintOriginalMaze(maze, currentX, currentY);
+
+                // If the coordinate is a '.' , continue(This is the base case)
                 if ('.' == maze[currentX, currentY])
                 {
+                    // Changes location to a X so you cant go back.
                     maze[currentX, currentY] = 'X';
-
-                    Console.WriteLine("Moved to {0}, {1}", currentX, currentY);
 
                     // Implement maze traversal recursive call
                     PrintOriginalMaze(maze, currentX, currentY);
 
                     mazeTraversal(currentX, currentY + 1, maze);
-                    maze[currentX, currentY] = 'X';
+                    // maze[currentX, currentY] = 'X';
 
                     mazeTraversal(currentX - 1, currentY, maze);
-                    maze[currentX, currentY] = 'X';
+                    //maze[currentX, currentY] = 'X';
 
                     mazeTraversal(currentX + 1, currentY, maze);
-                    maze[currentX, currentY] = 'X';
+                    // maze[currentX, currentY] = 'X';
 
                     mazeTraversal(currentX, currentY - 1, maze);
-                    maze[currentX, currentY] = 'X';
+                    //maze[currentX, currentY] = 'X';
 
                 }
-                
-                if('#' == maze[currentX, currentY])
+
+                if ('#' == maze[currentX, currentY])
                 {
                     Console.WriteLine("Hit a wall");
                     Console.WriteLine();
                 }
-                
             }
-
-            
-
         }
 
         public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
         {
+            Console.WriteLine("Moved to {0}, {1}", xStart, yStart);
 
             //Before Transposing
             for (int r = 0; r < maze.GetLength(0); r++)
