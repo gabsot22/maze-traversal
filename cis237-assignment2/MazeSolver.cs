@@ -34,8 +34,7 @@ namespace cis237_assignment2
         /// </summary>
         private void mazeTraversal(int currentX, int currentY, char[,] maze)
         {
-            // Implement maze traversal recursive call
-            PrintOriginalMaze(maze, currentX, currentY);
+            
 
             // This is the base case
             if ('.' == maze[currentX, currentY])
@@ -51,7 +50,8 @@ namespace cis237_assignment2
                 mazeTraversal(currentX, currentY - 1, maze);
 
             }
-            
+            // Implement maze traversal recursive call
+            PrintOriginalMaze(maze, currentX, currentY);
         }
 
         public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
