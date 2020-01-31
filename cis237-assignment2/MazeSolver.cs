@@ -18,12 +18,39 @@ namespace cis237_assignment2
         public void SolveMaze(char[,] maze, int xStart, int yStart)
         {
             // Do work needed to use mazeTraversal recursive call and solve the maze.
-           
 
+           // solveMaze(xStart, yStart, maze);
             mazeTraversal(xStart, yStart, maze);
 
         }
 
+
+        //private bool solveMaze(int currentX, int currentY, char[,] maze)
+        //{
+        //    bool correctPath = false;
+        //    bool shouldCheck = true;
+
+        //    if (currentX >= 12 || currentX < 0 || currentY >= 12 || currentY < 0)
+        //    {
+        //        shouldCheck = false;
+        //    }
+        //    else
+        //    {
+        //        // Check if at finish
+        //        if (maze[currentX, currentY] > 12)
+        //        {
+        //            correctPath = true;
+        //            shouldCheck = false;
+        //        }
+
+        //        //Check for a wall
+        //        if ('.' == maze[currentX, currentY])
+        //        {
+        //            shouldCheck = false;
+        //        }
+        //        return true;
+        //    }
+        //}
 
         /// <summary>
         /// This should be the recursive method that gets called to solve the maze.
@@ -35,23 +62,45 @@ namespace cis237_assignment2
         private void mazeTraversal(int currentX, int currentY, char[,] maze)
         {
             
+            
 
-            // This is the base case
-            if ('.' == maze[currentX, currentY])
+            if (currentX < 12 || currentY < 12 )
             {
-                maze[currentX, currentY] = 'X';
+                
+                // This is the base case
+                if ('.' == maze[currentX, currentY])
+                {
+                    maze[currentX, currentY] = 'X';
 
-                Console.WriteLine("Moved to {0}, {1}", currentX, currentY);
-           
-                mazeTraversal(currentX - 1, currentY, maze);
-                mazeTraversal(currentX + 1, currentY, maze);
+                    Console.WriteLine("Moved to {0}, {1}", currentX, currentY);
 
-                mazeTraversal(currentX, currentY + 1, maze);
-                mazeTraversal(currentX, currentY - 1, maze);
+                    // Implement maze traversal recursive call
+                    PrintOriginalMaze(maze, currentX, currentY);
 
+                    mazeTraversal(currentX, currentY + 1, maze);
+                    maze[currentX, currentY] = 'X';
+
+                    mazeTraversal(currentX - 1, currentY, maze);
+                    maze[currentX, currentY] = 'X';
+
+                    mazeTraversal(currentX + 1, currentY, maze);
+                    maze[currentX, currentY] = 'X';
+
+                    mazeTraversal(currentX, currentY - 1, maze);
+                    maze[currentX, currentY] = 'X';
+
+                }
+                
+                if('#' == maze[currentX, currentY])
+                {
+                    Console.WriteLine("Hit a wall");
+                    Console.WriteLine();
+                }
+                
             }
-            // Implement maze traversal recursive call
-            PrintOriginalMaze(maze, currentX, currentY);
+
+            
+
         }
 
         public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
@@ -74,7 +123,7 @@ namespace cis237_assignment2
                 for (int r = 0; r < maze.GetLength(0); r++)
                 {
                     Console.Write("{0}  ", maze[r, c]); // do assignments
-                    
+
                 }
 
                 Console.WriteLine();
