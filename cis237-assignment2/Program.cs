@@ -44,10 +44,7 @@ namespace cis237_assignment2
 
             // Create a new instance of a mazeSolver.
             MazeSolver mazeSolver = new MazeSolver();
-
-            // Print original maze
-          //  mazeSolver.PrintOriginalMaze(maze1, X_START, Y_START);
-
+            
             // Solve the original maze.
             mazeSolver.SolveMaze(maze1, X_START, Y_START);
 
@@ -98,12 +95,10 @@ namespace cis237_assignment2
                      transposedMaze[r,c] = mazeToTranspose[r, c];
                     return new char[r, c];
                 }
-
                 Console.WriteLine();
-
             }
             
-            return new char[5, 5]; // Just a place holder
+            return new char[12, 12]; // Just a place holder
         }
     }
 }

@@ -33,12 +33,13 @@ namespace cis237_assignment2
         /// </summary>
         private void mazeTraversal(int currentX, int currentY, char[,] maze)
         {
-            /*******************ATTEMPT 2***************/
+            ///*******************ATTEMPT 2***************/
             //// Checks if coordinates are outside the maze
             //if (currentX == 12 || currentY == 12)
             //{
             //    // Implement maze traversal recursive call
-            //    PrintOriginalMaze(maze, currentX, currentY);
+            //    //PrintOriginalMaze(maze, currentX, currentY);
+
 
             //}
             //else if ('.' == maze[currentX, currentY])
@@ -57,21 +58,24 @@ namespace cis237_assignment2
             //    mazeTraversal(currentX + 1, currentY, maze);
             //    mazeTraversal(currentX, currentY - 1, maze);
 
-            //    if ('X' == maze[currentX, currentY])
-            //    {
-            //        maze[currentX, currentY] = '0';
-            //    }
+            //    //if ('X' == maze[currentX, currentY])
+            //    //{
+            //    //    maze[currentX, currentY] = '0';
+            //    //}
             //}
 
 
 
             /*************** ATTEMPT 1 ******************/
 
+            var maxX = maze.GetUpperBound(0);
+            var maxY = maze.GetUpperBound(1);
+
+
+
             // Checks if coordinates are inside the maze
-            if (currentX <= 11 && currentY <= 11)
+            if (currentX <= 11 && currentY <= 11) //(currentX < maxX || currentX > 0 || currentY < maxY || currentY > 0)
             {
-                // Implement maze traversal recursive call
-                PrintOriginalMaze(maze, currentX, currentY);
 
                 // If the coordinate is a '.' , continue(This is the base case)
                 if ('.' == maze[currentX, currentY])
@@ -82,26 +86,23 @@ namespace cis237_assignment2
                     // Implement maze traversal recursive call
                     PrintOriginalMaze(maze, currentX, currentY);
 
-                    mazeTraversal(currentX, currentY + 1, maze);
-                    // maze[currentX, currentY] = 'X';
-
-                    mazeTraversal(currentX - 1, currentY, maze);
-                    //maze[currentX, currentY] = 'X';
-
-                    mazeTraversal(currentX + 1, currentY, maze);
-                    // maze[currentX, currentY] = 'X';
-
-                    mazeTraversal(currentX, currentY - 1, maze);
-                    //maze[currentX, currentY] = 'X';
-
+                    if (currentX != 11 && currentY != 11)
+                    {
+                        if ('.' != maze[currentX, currentY])
+                            mazeTraversal(currentX, currentY + 1, maze);
+                        if ('.' != maze[currentX, currentY])
+                            mazeTraversal(currentX - 1, currentY, maze);
+                        if ('.' != maze[currentX, currentY])
+                            mazeTraversal(currentX + 1, currentY, maze);
+                        if ('.' != maze[currentX, currentY])
+                            mazeTraversal(currentX, currentY - 1, maze);
+                    }
+                    return ;
                 }
 
-                if ('#' == maze[currentX, currentY])
-                {
-                    Console.WriteLine("Hit a wall");
-                    Console.WriteLine();
-                }
+                
             }
+            
         }
 
         public void PrintOriginalMaze(char[,] maze, int xStart, int yStart)
