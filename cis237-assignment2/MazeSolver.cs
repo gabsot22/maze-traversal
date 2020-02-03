@@ -90,11 +90,11 @@ namespace cis237_assignment2
                     {
                         if ('.' != maze[currentX, currentY])
                             mazeTraversal(currentX, currentY + 1, maze);
-                        if ('.' != maze[currentX, currentY])
+                        if ('X' != maze[currentX, currentY])
                             mazeTraversal(currentX - 1, currentY, maze);
-                        if ('.' != maze[currentX, currentY])
+                        if ('X' != maze[currentX, currentY])
                             mazeTraversal(currentX + 1, currentY, maze);
-                        if ('.' != maze[currentX, currentY])
+                        if ('X' != maze[currentX, currentY])
                             mazeTraversal(currentX, currentY - 1, maze);
                     }
                     return ;
