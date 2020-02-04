@@ -6,8 +6,6 @@ namespace cis237_assignment2
     {
         /// <summary>
         /// This is the main entry point for the program.
-        /// You are free to add anything else you would like to this program,
-        /// however the maze solving part needs to occur in the MazeSolver class.
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
@@ -52,6 +50,14 @@ namespace cis237_assignment2
             // Create the second maze by transposing the first maze
             char[,] maze2 = transposeMaze(maze1);
 
+            //for (int r = 0; r < maze2.GetLength(0); r++)
+            //{
+            //    for (int c = 0; c < maze2.GetLength(1); c++)
+            //        Console.Write("{0}  ", maze2[r, c]);            // rOW, cOLUMN - USE IT kiss!
+            //    Console.WriteLine();
+            //}
+            //Console.WriteLine();
+
             // Solve the transposed maze.
             mazeSolver.SolveMaze(maze2, X_START, Y_START);
 
@@ -82,7 +88,7 @@ namespace cis237_assignment2
         {
             //Write code here to create a transposed maze.
 
-            // Output Transposed maze
+            // Solve Transposed maze
             char[,] transposedMaze = new char[12, 12];
             for (int c = 0; c < mazeToTranspose.GetLength(1); c++)
             {
@@ -90,13 +96,12 @@ namespace cis237_assignment2
                 {
                     Console.Write("{0}  ", mazeToTranspose[r, c]); // do assignments
                     
-                     transposedMaze[r,c] = mazeToTranspose[r, c];
-                    //return new char[r, c];
+                     transposedMaze[c,r] = mazeToTranspose[r, c];
                 }
                 Console.WriteLine();
             }
-            
-            return new char[12, 12]; // Just a place holder
+            // returns the new transposed maze
+            return transposedMaze; //new char[12, 12]; // Just a place holder
         }
     }
 }
