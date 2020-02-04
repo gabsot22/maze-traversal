@@ -2,6 +2,7 @@
 
 namespace cis237_assignment2
 {
+
     /// <summary>
     /// This class is used for solving a char array maze.
     /// You might want to add other methods to help you out.
@@ -10,6 +11,7 @@ namespace cis237_assignment2
     /// </summary>
     class MazeSolver
     {
+        bool endOfMaze = false;
         /// <summary>
         /// This is the public method that will allow someone to use this class to solve the maze.
         /// Feel free to change the return type, or add more parameters if you like, but it can be done
@@ -17,6 +19,7 @@ namespace cis237_assignment2
         /// </summary>
         public void SolveMaze(char[,] maze, int xStart, int yStart)
         {
+            endOfMaze = false;
             // Do work needed to use mazeTraversal recursive call and solve the maze.
 
             // solveMaze(xStart, yStart, maze);
@@ -70,7 +73,7 @@ namespace cis237_assignment2
 
             var maxX = maze.GetUpperBound(0);
             var maxY = maze.GetUpperBound(1);
-
+            
 
 
             // Checks if coordinates are inside the maze
@@ -86,21 +89,30 @@ namespace cis237_assignment2
                     // Implement maze traversal recursive call
                     PrintOriginalMaze(maze, currentX, currentY);
 
+                    // End of maze
                     if (currentX != 11 && currentY != 11)
                     {
-                        if ('.' != maze[currentX, currentY])
+                        if (endOfMaze != true)
                             mazeTraversal(currentX, currentY + 1, maze);
-                        if ('X' != maze[currentX, currentY])
+                        if (endOfMaze != true)
                             mazeTraversal(currentX - 1, currentY, maze);
-                        if ('X' != maze[currentX, currentY])
+                        if (endOfMaze != true)
                             mazeTraversal(currentX + 1, currentY, maze);
-                        if ('X' != maze[currentX, currentY])
+                        if (endOfMaze != true)
                             mazeTraversal(currentX, currentY - 1, maze);
                     }
-                    return ;
+                    else
+                    {
+                        endOfMaze = true; // wont stay true
+                    }
+
+                    //if ('X' == maze[currentX, currentY])
+                    //{
+                    //    maze[currentX, currentY] = '0';
+                    //}
                 }
 
-                
+
             }
             
         }

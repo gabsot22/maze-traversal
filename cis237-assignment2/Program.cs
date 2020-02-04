@@ -50,12 +50,10 @@ namespace cis237_assignment2
 
 
             // Create the second maze by transposing the first maze
-            //char[,] maze2 = transposeMaze(maze1);
-
-            // mazeSolver.PrintTransposedMaze(maze2, X_START, Y_START);
+            char[,] maze2 = transposeMaze(maze1);
 
             // Solve the transposed maze.
-            // mazeSolver.SolveMaze(maze2, X_START, Y_START);
+            mazeSolver.SolveMaze(maze2, X_START, Y_START);
 
 
 
@@ -85,7 +83,7 @@ namespace cis237_assignment2
             //Write code here to create a transposed maze.
 
             // Output Transposed maze
-            char[,] transposedMaze = new char[5, 5];
+            char[,] transposedMaze = new char[12, 12];
             for (int c = 0; c < mazeToTranspose.GetLength(1); c++)
             {
                 for (int r = 0; r < mazeToTranspose.GetLength(0); r++)
@@ -93,7 +91,7 @@ namespace cis237_assignment2
                     Console.Write("{0}  ", mazeToTranspose[r, c]); // do assignments
                     
                      transposedMaze[r,c] = mazeToTranspose[r, c];
-                    return new char[r, c];
+                    //return new char[r, c];
                 }
                 Console.WriteLine();
             }
